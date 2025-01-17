@@ -1,38 +1,15 @@
-# Welcome to React Router!
+# address-book
 
-- [React Router Docs](https://reactrouter.com/home)
+[React Router v7 公式ドキュメント チュートリアル](https://react-router-docs-ja.techtalk.jp/tutorials/address-book)
 
-## Development
+## SetUp
 
-From your terminal:
+```sh
+npm install
+```
+
+## Run
 
 ```sh
 npm run dev
 ```
-
-This starts your app in development mode, rebuilding assets on file changes.
-
-## Deployment
-
-First, build your app for production:
-
-```sh
-npm run build
-```
-
-Then run the app in production mode:
-
-```sh
-npm start
-```
-
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying node applications, the built-in React Router app server is production-ready.
-
-Make sure to deploy the output of `react-router build`
-
-- `build/server`
-- `build/client`
