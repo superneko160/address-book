@@ -122,3 +122,13 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
     </main>
   );
 }
+
+// アプリがハイドレートされる（クライアント側で初めてレンダリングされる）前に表示されるフォールバック
+export function HydrateFallback() {
+  return (
+    <div id="loading-splash">
+      <div id="loading-splash-spinner" />
+      <p>Loading, please wait...</p>
+    </div>
+  );
+}
