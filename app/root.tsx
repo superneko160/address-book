@@ -7,10 +7,18 @@ import {
   isRouteErrorResponse,
 } from "react-router";
 import type { Route } from "./+types/root";
+import { getContacts } from "./data";
 
 import appStylesHref from "./app.css?url";
 
-export default function App() {
+export async function clientLoader() {
+  const contacts = await getContacts();
+  return { contacts };
+}
+
+export default function App({ loaderData, }: Route.ComponentProps) {
+  const { contacts } = loaderData;
+
   return (
     <>
       <div id="sidebar">
@@ -31,14 +39,30 @@ export default function App() {
           </Form>
         </div>
         <nav>
-          <ul>
-            <li>
-              <Link to={`/contacts/1`}>Your Name</Link>
-            </li>
-            <li>
-              <Link to={`/contacts/2`}>Your Friend</Link>
-            </li>
-          </ul>
+        {contacts.length ? (
+            <ul>
+              {contacts.map((contact) => (
+                <li key={contact.id}>
+                  <Link to={`contacts/${contact.id}`}>
+                    {contact.first || contact.last ? (
+                      <>
+                        {contact.first} {contact.last}
+                      </>
+                    ) : (
+                      <i>名前なし</i>
+                    )}
+                    {contact.favorite ? (
+                      <span>★</span>
+                    ) : null}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>
+              <i>連絡先なし</i>
+            </p>
+          )}
         </nav>
       </div>
       <div id="detail">
